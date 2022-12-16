@@ -73,6 +73,7 @@ class ccData:
         nsooccnos -- natural spin orbital occupation numbers (list of array[1])
         optdone -- flags whether an optimization has converged (Boolean)
         optstatus -- optimization status for each set of atomic coordinates (array[1])
+        optrotation -- Optical Rotation at different WL by couple of WL & Alpha (list of array[2])   # NDA 2022
         polarizabilities -- (dipole) polarizabilities, static or dynamic (list of arrays[2])
         pressure -- pressure used for Thermochemistry (float, atm)
         rotconsts -- rotational constants (array[2], GHz)
@@ -88,12 +89,26 @@ class ccData:
         transprop -- all absorption and emission spectra (dictionary {name:(etenergies, etoscs)})
             WARNING: this attribute is not standardized and is liable to change in cclib 2.0
         vibanharms -- vibrational anharmonicity constants (array[2], 1/cm)
-        vibdisps -- cartesian displacement vectors (array[3], delta angstrom)
+        vibdipstr -- Dipolar strength (array[1], XXXX ?????)
+                vibdisps -- cartesian displacement vectors (array[3], delta angstrom)
+        
+       vibdipstr":        Attribute(numpy.ndarray,    'dipolar strength',            'vibrations:dipolarStrength'),
+        
         vibfreqs -- vibrational frequencies (array[1], 1/cm)
         vibfconsts -- force constants of vibrations (array[1], mDyne/angstrom)
         vibirs -- IR intensities (array[1], km/mol)
+        vibraman1         Attribute(numpy.ndarray,    'raman1',                      'vibrations:Raman1'),   # NDA 2022
+        vibraman2        Attribute(numpy.ndarray,    'raman2',                      'vibrations:Raman2'),   # NDA 2022
+        vibraman3 ":        Attribute(numpy.ndarray,    'raman3',                      'vibrations:Raman3'),   # NDA 2022
+        vibramans ":        Attribute(numpy.ndarray,    'raman',                       'vibrations:intensities'),
+
+
+        
         vibramans -- Raman activities (array[1], A^4/Da)
         vibrmasses -- reduced masses of vibrations (array[1], daltons)
+        vibroa1 --          Attribute(numpy.ndarray,    'roa1',                        'vibrations:ROA1'),   # NDA 2022
+        vibroa2          Attribute(numpy.ndarray,    'roa2',                        'vibrations:ROA2'),   # NDA 2022
+        vibroa3          Attribute(numpy.ndarray,    'roa3',                        'vibrations:ROA3'),   # NDA 2022
         vibsyms -- symmetries of vibrations (list of strings)
         zpve -- zero-point vibrational energy correction (float, hartree/particle)
     (1) The term 'array' refers to a numpy array
@@ -156,6 +171,8 @@ class ccData:
        "nsooccnos":         Attribute(list,    'TBD',                         'N/A'),
        "optdone":          Attribute(list,             'done',                        'optimization'),
        "optstatus":        Attribute(numpy.ndarray,    'status',                      'optimization'),
+       "optrotation":      Attribute(list,             'OptRotation',                 'OpticalRotation'), # NDA 2022
+
        "polarizabilities": Attribute(list,             'polarizabilities',            'N/A'),
        "pressure":         Attribute(float,            'pressure',                    'properties'),
        "rotconsts":        Attribute(numpy.ndarray,    'rotational constants',        'atoms:coords:rotconsts'),
@@ -170,12 +187,27 @@ class ccData:
        "time":             Attribute(numpy.ndarray,    'time',                        'N/A'),
        "transprop":        Attribute(dict,             'electronic transitions',      'transitions'),
        "vibanharms":       Attribute(numpy.ndarray,    'anharmonicity constants',     'vibrations'),
+       "vibdipstr":        Attribute(numpy.ndarray,    'dipolar strength',            'vibrations:dipolarStrength'),
        "vibdisps":         Attribute(numpy.ndarray,    'displacement',                'vibrations'),
        "vibfreqs":         Attribute(numpy.ndarray,    'frequencies',                 'vibrations'),
        "vibfconsts":       Attribute(numpy.ndarray,    'force constants',             'vibrations'),
+       "vibinvs":           Attribute(numpy.ndarray,   'invariant',                   'Invariant:Raman'),      # NDA 2022
+
        "vibirs":           Attribute(numpy.ndarray,    'IR',                          'vibrations:intensities'),
-       "vibramans":        Attribute(numpy.ndarray,    'raman',                       'vibrations:intensities'),
+
+       "vibraman1":        Attribute(numpy.ndarray,    'raman1',                      'vibrations:Raman1Intens'),
+       "vibraman2":        Attribute(numpy.ndarray,    'raman2',                      'vibrations:Raman2Intens'),
+       "vibraman3":        Attribute(numpy.ndarray,    'raman3',                      'vibrations:Raman3Intens'),
+       "vibramaninvs":          Attribute(numpy.ndarray,    'invariants Raman',            'vibrations:RamanInvariants'),
+       "vibramans":        Attribute(numpy.ndarray,    'raman',                       'vibrations:RamanIntens'),
+
        "vibrmasses":       Attribute(numpy.ndarray,    'reduced masses',              'vibrations'),
+
+       "vibroa1":          Attribute(numpy.ndarray,    'roa1',                        'vibrations:ROA1Intens'),
+       "vibroa2":          Attribute(numpy.ndarray,    'roa2',                        'vibrations:ROA2Intens'),
+       "vibroa3":          Attribute(numpy.ndarray,    'roa3',                        'vibrations:ROA3Intens'),
+       "vibrotstr":        Attribute(numpy.ndarray,    'rotationnal strength',        'vibrations:rotationalstrength'),
+       
        "vibsyms":          Attribute(list,             'vibration symmetry',          'vibrations'),
        "zpve":             Attribute(float,            'zero-point correction',       'properties:energies')
     }

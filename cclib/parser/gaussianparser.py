@@ -1310,8 +1310,35 @@ class Gaussian(logfileparser.Logfile):
                             self.vibrmasses = []
                         if hasattr(self, "vibfconsts"):
                             self.vibfconsts = []
+
                         if hasattr(self, 'vibdisps'):
                             self.vibdisps = []
+                        if hasattr(self, "vibdipstr"):
+                            self.vibdipstr = []
+                        if hasattr(self, "vibrotstr"):
+                            self.vibrotstr = []
+#                        if hasattr(self, 'vibnroas'):
+#                            self.vibnroas = []
+                        if hasattr(self, 'vibramaninvinv'):
+                            self.vibinv = []
+                        """if hasattr(self, 'vibAlpha2'):
+                            self.viinvbAlpha2  = []
+                            self.vibinvBeta2   = []
+                            self.vibinvAlphaG  = []
+                            self.vibinvGamma2  = []
+                            self.vibinvDelta2  = [] """
+                        if hasattr(self, 'vibraman1'):
+                            self.vibraman1 = []
+                        if hasattr(self, 'vibroa1'):
+                            self.vibroa1 = []
+                        if hasattr(self, 'vibraman2'):
+                            self.vibraman2 = []
+                        if hasattr(self, 'vibroa2'):
+                            self.vibroa2 = []
+                        if hasattr(self, 'vibraman3'):
+                            self.vibraman3 = []
+                        if hasattr(self, 'vibroa3'):
+                            self.vibroa3 = []
 
                 # Lines with symmetries and symm. indices begin with whitespace.
                 if line[1:15].strip() == "" and not line[15:60].split()[0].isdigit():
@@ -1371,6 +1398,114 @@ class Gaussian(logfileparser.Logfile):
                             ramans.append(utils.float('nan'))
 
                     self.vibramans.extend(ramans)
+                    
+#                if line[1:10] == "Dip. str.":
+##                    if not hasattr(self, 'vibdipstr'):
+#                        self.vibdipstr = []
+#                    dipstr = [self.float(f) for f in line[15:].split()]
+#                    self.vibdipstr.extend(dipstr)
+#                    line
+
+                if line[1:10] == "Rot. str.":
+
+                    if not hasattr(self, 'vibrotstr'):
+                        self.vibrotstr = []
+
+                    tmps = []
+                    for tmp in line[15:].split():
+                        try:
+                            tmps.append(utils.float(tmp))
+                        except ValueError:
+                            tmps.append(utils.float('nan'))
+
+                    self.vibrotstr.extend(tmps)
+
+
+#                if line[1:11] == "Alpha2 Fr=":
+                    #print(line)
+#                    if not hasattr(self, 'vibinv'):
+#                        self.vibinv = []  
+#                     self.vibinv[0] = []  # .Alpha2
+#                        self.vibinv[1] = []  # Beta2
+#                        self.vibinv[2] = []  # .AlphaG
+#                        self.vibinv[3] = []  # .Gamma2
+#                        self.vibinv[4] = []  # .Delta2
+#                        self.vibinvAlpha2  = []
+#                        self.vibinvBeta2   = []
+#                        self.vibinvAlphaG  = []
+#                        self.vibinvGamma2  = []
+#                        self.vibinvDelta2  = []"""
+#                    Alpha2 = [self.float(f) for f in line[15:].split()]
+#                    line = next(inputfile)
+#                    Beta2 = [self.float(f) for f in line[15:].split()]
+#                    line = next(inputfile)
+#                    AlphaG = [self.float(f) for f in line[15:].split()]
+#                    line = next(inputfile)
+#                    Gamma2 = [self.float(f) for f in line[15:].split()]
+#                    line = next(inputfile)
+#                    Delta2 = [self.float(f) for f in line[15:].split()]"""
+                    
+                if line[1:7] == "Raman1":
+                    if not hasattr(self, 'vibraman1'):
+                        self.vibraman1 = []
+                    self.vibraman1.extend(tmps)
+
+                if line[1:6] == "ROA1 ":
+                    if not hasattr(self, 'vibroa1'):
+                        self.vibroa1 = []
+                    tmps = []
+                    for tmp in line[15:].split():
+                        try:
+                            tmps.append(utils.float(tmp))
+                        except ValueError:
+                            tmps.append(utils.float('nan'))
+                    self.vibroa1.extend(tmps)
+                    
+                if line[1:7] == "Raman2":
+                    if not hasattr(self, 'vibraman2'):
+                        self.vibraman2 = []
+                    tmps = []
+                    for tmp in line[15:].split():
+                        try:
+                            tmps.append(utils.float(tmp))
+                        except ValueError:
+                            tmps.append(utils.float('nan'))
+                    self.vibraman2.extend(tmps)
+
+                if line[1:6] == "ROA2 ":
+                    if not hasattr(self, 'vibroa2'):
+                        self.vibroa2 = []
+                    tmps = []
+                    for tmp in line[15:].split():
+                        try:
+                            tmps.append(utils.float(tmp))
+                        except ValueError:
+                            tmps.append(utils.float('nan'))
+                    self.vibroa2.extend(tmps)
+                    
+                if line[1:7] == "Raman3":
+                    if not hasattr(self, 'vibraman3'):
+                        self.vibraman3 = []
+                    tmps = []
+                    for tmp in line[15:].split():
+                        try:
+                            tmps.append(utils.float(tmp))
+                        except ValueError:
+                            tmps.append(utils.float('nan'))
+                    self.vibraman3.extend(tmps)
+
+                if line[1:6] == "ROA3 ":
+                    if not hasattr(self, 'vibroa3'):
+                        self.vibroa3 = []
+                    tmps = []
+                    for tmp in line[15:].split():
+                        try:
+                            tmps.append(utils.float(tmp))
+                        except ValueError:
+                            tmps.append(utils.float('nan'))
+                    self.vibroa3.extend(tmps)
+                    
+############### fin modification Nicolas ########
 
                 # Block with (default-precision) displacements should start with this.
                 #                     1                      2                      3
