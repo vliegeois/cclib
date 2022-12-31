@@ -1317,10 +1317,8 @@ class Gaussian(logfileparser.Logfile):
                             self.vibdipstr = []
                         if hasattr(self, "vibrotstr"):
                             self.vibrotstr = []
-#                        if hasattr(self, 'vibnroas'):
-#                            self.vibnroas = []
-                        if hasattr(self, 'vibramaninvinv'):
-                            self.vibinv = []
+                        if hasattr(self, 'vibramaninvs'):
+                            self.vibramaninvs = []
                         """if hasattr(self, 'vibAlpha2'):
                             self.viinvbAlpha2  = []
                             self.vibinvBeta2   = []
@@ -1417,7 +1415,6 @@ class Gaussian(logfileparser.Logfile):
                             tmps.append(utils.float(tmp))
                         except ValueError:
                             tmps.append(utils.float('nan'))
-
                     self.vibrotstr.extend(tmps)
 
 
