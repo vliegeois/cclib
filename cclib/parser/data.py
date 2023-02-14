@@ -92,21 +92,21 @@ class ccData:
         vibdipstr -- Dipolar strength (array[1], XXXX ?????)
                 vibdisps -- cartesian displacement vectors (array[3], delta angstrom)
         
-       vibdipstr":        Attribute(numpy.ndarray,    'dipolar strength',            'vibrations:dipolarStrength'),
+        vibdipstr":        Attribute(numpy.ndarray,    'dipolar strength',            'vibrations:dipolarStrength'),
         
         vibfreqs -- vibrational frequencies (array[1], 1/cm)
         vibfconsts -- force constants of vibrations (array[1], mDyne/angstrom)
         vibirs -- IR intensities (array[1], km/mol)
         vibraman1         Attribute(numpy.ndarray,    'raman1',                      'vibrations:Raman1'),   # NDA 2022
         vibraman2        Attribute(numpy.ndarray,    'raman2',                      'vibrations:Raman2'),   # NDA 2022
-        vibraman3 ":        Attribute(numpy.ndarray,    'raman3',                      'vibrations:Raman3'),   # NDA 2022
-        vibramans ":        Attribute(numpy.ndarray,    'raman',                       'vibrations:intensities'),
-
-
+        vibraman3         Attribute(numpy.ndarray,    'raman3',                      'vibrations:Raman3'),   # NDA 2022
+        vibramans         Attribute(numpy.ndarray,    'raman',                       'vibrations:intensities'),
         
         vibramans -- Raman activities (array[1], A^4/Da)
+        vibrc180  -- Dépolarization ratio 180 (array[1] for WL 1)              'vibrations:ROA1'),   # NDA 2022
+    
         vibrmasses -- reduced masses of vibrations (array[1], daltons)
-        vibroa1 --          Attribute(numpy.ndarray,    'roa1',                        'vibrations:ROA1'),   # NDA 2022
+        vibroa1 --          Attribute(numpy.ndarray,    'roa1',                     'vibrations:ROA1'),   # NDA 2022
         vibroa2          Attribute(numpy.ndarray,    'roa2',                        'vibrations:ROA2'),   # NDA 2022
         vibroa3          Attribute(numpy.ndarray,    'roa3',                        'vibrations:ROA3'),   # NDA 2022
         vibsyms -- symmetries of vibrations (list of strings)
@@ -198,8 +198,9 @@ class ccData:
        "vibraman1":        Attribute(numpy.ndarray,    'raman1',                      'vibrations:Raman1Intens'),
        "vibraman2":        Attribute(numpy.ndarray,    'raman2',                      'vibrations:Raman2Intens'),
        "vibraman3":        Attribute(numpy.ndarray,    'raman3',                      'vibrations:Raman3Intens'),
-       "vibramaninvs":          Attribute(numpy.ndarray,    'invariants Raman',            'vibrations:RamanInvariants'),
+       "vibramaninvs":     Attribute(numpy.ndarray,    'invariants Raman',            'vibrations:RamanInvariants'),
        "vibramans":        Attribute(numpy.ndarray,    'raman',                       'vibrations:RamanIntens'),
+       "vibrc180":         Attribute(numpy.ndarray,    'ratio depolarization',        'vibrations:RamanRC180'),
 
        "vibrmasses":       Attribute(numpy.ndarray,    'reduced masses',              'vibrations'),
 

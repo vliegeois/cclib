@@ -1337,6 +1337,8 @@ class Gaussian(logfileparser.Logfile):
                             self.vibraman3 = []
                         if hasattr(self, 'vibroa3'):
                             self.vibroa3 = []
+                        if hasattr(self, 'vibrc180'):
+                            self.vibrc180 = []
 
                 # Lines with symmetries and symm. indices begin with whitespace.
                 if line[1:15].strip() == "" and not line[15:60].split()[0].isdigit():
@@ -1501,6 +1503,29 @@ class Gaussian(logfileparser.Logfile):
                         except ValueError:
                             tmps.append(utils.float('nan'))
                     self.vibroa3.extend(tmps)
+
+                if line[1:6] == "RC180":
+                    if not hasattr(self, 'vibrc180'):
+                        self.vibrc180 = []
+                    tmps = []
+                    for tmp in line[15:].split():
+                        try:
+                            tmps.append(utils.float(tmp))
+                        except ValueError:
+                            tmps.append(utils.float('nan'))
+                    self.vibrc180.extend(tmps)
+
+                if line[1:6] == "ROA3 ":
+                    if not hasattr(self, 'vibroa3'):
+                        self.vibroa3 = []
+                    tmps = []
+                    for tmp in line[15:].split():
+                        try:
+                            tmps.append(utils.float(tmp))
+                        except ValueError:
+                            tmps.append(utils.float('nan'))
+                    self.vibroa3.extend(tmps)
+
                     
 ############### fin modification Nicolas ########
 
